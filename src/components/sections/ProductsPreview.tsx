@@ -59,7 +59,7 @@ export default function ProductsPreview() {
               {/* Porthole frame */}
               <div style={{
                 position: 'relative',
-                width: 200, height: 200,
+                width: 'min(200px, 65vw)', height: 'min(200px, 65vw)',
                 borderRadius: '50%',
                 border: '6px solid rgba(59,130,196,0.5)',
                 boxShadow: '0 0 0 3px rgba(34,197,212,0.2), 0 0 40px rgba(34,197,212,0.12), inset 0 0 30px rgba(0,0,0,0.4)',

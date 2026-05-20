@@ -29,7 +29,7 @@ export default function HeroSection() {
         <p className="text-teal text-sm font-semibold tracking-widest uppercase mb-4">
           Delivery gratuito en Quilicura
         </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight mb-6 drop-shadow-lg">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 drop-shadow-lg">
           Agua pura directo<br />
           <span className="text-teal">a tu hogar</span>
         </h1>
@@ -44,7 +44,7 @@ export default function HeroSection() {
             <p
               className="font-display font-bold tracking-widest uppercase"
               style={{
-                fontSize: 'clamp(18px, 3vw, 26px)',
+                fontSize: 'clamp(15px, 4vw, 26px)',
                 color: '#4DC4C0',
                 animation: 'biolum 3s ease-in-out infinite',
                 letterSpacing: '0.25em',
@@ -58,7 +58,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <p className="text-white/80 text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
+        <p className="text-white/80 text-base sm:text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
           Filtrada 9 veces. Alcalina. Sin cloro ni sodio.
         </p>
 

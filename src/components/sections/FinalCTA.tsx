@@ -21,7 +21,8 @@ export default function FinalCTA() {
         {[320, 240, 170, 110, 60].map((size, i) => (
           <div key={i} style={{
             position: 'absolute',
-            width: size, height: size,
+            width: `min(${size}px, ${Math.round(size / 3.2 * 10) / 10}vw + ${Math.round(size * 0.3)}px)`,
+            height: `min(${size}px, ${Math.round(size / 3.2 * 10) / 10}vw + ${Math.round(size * 0.3)}px)`,
             borderRadius: '50%',
             border: `${1.5 - i * 0.15}px solid rgba(77,196,192,${0.35 - i * 0.05})`,
             animation: `vortex-spin ${8 + i * 3}s linear infinite ${i % 2 === 0 ? '' : 'reverse'}`,

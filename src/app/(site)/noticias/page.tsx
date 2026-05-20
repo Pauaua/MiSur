@@ -54,7 +54,7 @@ export default async function NoticiasPage({
 
         <div className="relative z-10 max-w-3xl mx-auto px-4">
           <p className="text-teal text-sm font-semibold tracking-widest uppercase mb-4">Blog</p>
-          <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">Noticias</h1>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">Noticias</h1>
           <svg viewBox="0 0 140 16" xmlns="http://www.w3.org/2000/svg" style={{ width: 140, margin: '0 auto 24px', display: 'block' }}>
             <path d="M0,8 C18,2 35,14 52,8 C69,2 86,14 103,8 C120,2 132,14 140,8" fill="none" stroke="#4DC4C0" strokeWidth="2.5" strokeLinecap="round"/>
           </svg>
