@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy:    #2C50C8;  /* cobalt azul — borde y texto del logo */
+  --color-teal:    #4DC4C0;  /* teal suave — ola del logo            */
+  --color-skyblue: #6A90E8;  /* azul claro — gradientes / hover      */
+  --color-cream:   #F5F7FA;
+  --font-sans:     var(--font-inter);
+  --font-display:  var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes wave1 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes wave2 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes wave3 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes bubble-float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-30px) scale(1.08); } }
+@keyframes subtle-pulse { 0% { background-position: 30% 50%; } 50% { background-position: 70% 50%; } 100% { background-position: 30% 50%; } }
+@keyframes bounce-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@keyframes ripple-effect { 0% { transform: scale(0); opacity: 0.6; } 100% { transform: scale(4); opacity: 0; } }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(77,196,192,0.5); } 50% { box-shadow: 0 0 0 12px rgba(77,196,192,0); } }
+@keyframes counter-pop { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Drop ripple (WhyUs hover) ───────────────────── */
+@keyframes drop-ripple {
+  0%   { transform: scale(0.3); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+@keyframes drip {
+  0%   { transform: translateY(-18px) scaleY(0.6); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(0px)  scaleY(1);   opacity: 0; }
+}
+/* ── Bubbles rising (Productos) ──────────────────── */
+@keyframes rise {
+  0%   { transform: translateY(0)    scale(1);    opacity: 0.7; }
+  50%  { transform: translateY(-40%) scale(1.05); opacity: 0.5; }
+  100% { transform: translateY(-90%) scale(0.8);  opacity: 0; }
+}
+/* ── Bioluminescence (Stats) ─────────────────────── */
+@keyframes biolum {
+  0%, 100% { text-shadow: 0 0 20px rgba(77,196,192,0.4), 0 0 60px rgba(77,196,192,0.2); }
+  50%       { text-shadow: 0 0 40px rgba(77,196,192,0.9), 0 0 100px rgba(77,196,192,0.5), 0 0 160px rgba(106,144,232,0.3); }
+}
+@keyframes particle-drift {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translate(20px, -30px); opacity: 0; }
+}
+/* ── Vortex (CTA) ────────────────────────────────── */
+@keyframes vortex-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes vortex-pulse {
+  0%, 100% { opacity: 0.12; transform: scale(1); }
+  50%       { opacity: 0.22; transform: scale(1.04); }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Caustic light & underwater shimmers ─────────── */
+@keyframes caustic-a {
+  0%   { transform: translate(0, 0)     scale(1)    rotate(0deg);  opacity: 0.18; }
+  33%  { transform: translate(40px,-20px) scale(1.15) rotate(3deg);  opacity: 0.30; }
+  66%  { transform: translate(-30px,15px) scale(0.9)  rotate(-2deg); opacity: 0.13; }
+  100% { transform: translate(0, 0)     scale(1)    rotate(0deg);  opacity: 0.18; }
+}
+@keyframes caustic-b {
+  0%   { transform: translate(0,0)       scale(1.1)  rotate(0deg);  opacity: 0.12; }
+  50%  { transform: translate(-50px,30px) scale(0.85) rotate(-4deg); opacity: 0.24; }
+  100% { transform: translate(0,0)       scale(1.1)  rotate(0deg);  opacity: 0.12; }
+}
+@keyframes surface-shimmer {
+  0%   { transform: translateX(-110%) skewX(-10deg); opacity: 0; }
+  15%  { opacity: 0.4; }
+  85%  { opacity: 0.4; }
+  100% { transform: translateX(210%)  skewX(-10deg); opacity: 0; }
+}
+@keyframes depth-ray {
+  0%   { opacity: 0;    transform: scaleY(0.7); }
+  40%  { opacity: 0.22; }
+  60%  { opacity: 0.22; }
+  100% { opacity: 0;    transform: scaleY(1.2); }
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans, Arial, sans-serif); }
+
+.font-display { font-family: var(--font-display, Georgia, serif); }
+.wave-animate-1 { animation: wave1 8s linear infinite; }
+.wave-animate-2 { animation: wave2 12s linear infinite; }
+.wave-animate-3 { animation: wave3 6s linear infinite; }
+.bubble-float   { animation: bubble-float 4s ease-in-out infinite alternate; }
+.bounce-arrow   { animation: bounce-arrow 1.5s ease-in-out infinite; }
+.pulse-glow     { animation: pulse-glow 2s ease-in-out infinite; }
+
+.water-bg {
+  background: radial-gradient(ellipse at 30% 50%, #2C50C8, #111E58 60%, #07102C);
+  background-size: 200% 200%;
+  animation: subtle-pulse 10s ease-in-out infinite;
+}
+
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-ripple { position: relative; overflow: hidden; }
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 60px; height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transform: scale(0);
+}
+.btn-ripple:active::after { animation: ripple-effect 0.6s ease-out forwards; }
+
+.header-scrolled {
+  backdrop-filter: blur(16px) !important;
+  background: rgba(255,255,255,0.92) !important;
+  box-shadow: 0 1px 20px rgba(44,80,200,0.12);
 }

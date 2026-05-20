@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aguas Mi Sur — Sitio Web Institucional
 
-## Getting Started
+Sitio web para empresa distribuidora de agua purificada en Chile.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** (App Router, Turbopack)
+- **TypeScript**
+- **Tailwind CSS v4** (config en `globals.css` vía `@theme`)
+- **Prisma v7** + **@prisma/adapter-pg** → PostgreSQL
+- **Neon Tech** (serverless PostgreSQL)
+- **Vercel** (despliegue)
+
+## Variables de entorno
+
+Copia `.env.local` y completa con tus credenciales:
+
+```
+DATABASE_URL=           # Neon pooled connection string (pooler)
+DIRECT_URL=             # Neon direct connection (migraciones)
+ADMIN_SECRET=           # Contraseña del panel /admin
+NEXT_PUBLIC_WHATSAPP=   # Número sin + ni espacios: 56958936744
+NEXT_PUBLIC_INSTAGRAM=  # aguasmisur
+NEXT_PUBLIC_FACEBOOK=   # aguas.misur
+CONTACT_EMAIL=          # Email de destino
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desarrollo local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+# Configura .env.local con tus credenciales de Neon
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Base de datos (Neon)
 
-## Learn More
+1. Crea un proyecto en [neon.tech](https://neon.tech)
+2. Copia las connection strings a `.env.local`
+3. Ejecuta la migración inicial:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma migrate dev --name init
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Despliegue en Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. `vercel` (o conecta el repo en vercel.com)
+2. Agrega las env vars en el dashboard de Vercel
+3. El build ejecuta `npx prisma generate` automáticamente
 
-## Deploy on Vercel
+Agrega en `package.json` → `scripts`:
+```json
+"vercel-build": "prisma generate && next build"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Rutas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Landing page |
+| `/nosotros` | Historia y proceso |
+| `/productos` | Catálogo con filtros |
+| `/noticias` | Blog (DB) |
+| `/noticias/[slug]` | Artículo individual |
+| `/contacto` | Formulario + WhatsApp |
+| `/admin/login` | Login admin |
+| `/admin/noticias` | CRUD de artículos |
+
+## Panel Admin
+
+Accede a `/admin/login` con la contraseña definida en `ADMIN_SECRET`.
