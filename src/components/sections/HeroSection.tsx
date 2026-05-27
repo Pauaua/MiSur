@@ -59,7 +59,7 @@ export default function HeroSection() {
         </div>
 
         <p className="text-white/80 text-base sm:text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
-          Filtrada 9 veces. Alcalina. Sin cloro ni sodio.
+          El sur en cada gota, pureza en cada sorbo.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
