@@ -1,8 +1,1 @@
-{
-  "env": {
-    "DATABASE_URL": "@database-url",
-    "DIRECT_URL": "@direct-url",
-    "ADMIN_SECRET": "@admin-secret",
-    "CONTACT_EMAIL": "@contact-email"
-  }
-}
+{}
